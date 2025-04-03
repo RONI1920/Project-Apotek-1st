@@ -41,8 +41,8 @@ a.edit {
     background-color: #2196F3;
 }
 
-a.hapus {
-    background-color: #f44336;
+a.logout {
+    background-color: #cd0202;
 }
 
 a.tambah {
@@ -69,13 +69,15 @@ a.cetak {
     display: inline-block;
     margin-top: 10px;
 }
-form {
-    margin-bottom: 20px; /* Tambahkan jarak antara form dan tabel */
+.cari {
+    margin-bottom: 30px; /* Tambahkan jarak antara form dan tabel */
 }
 
 .pagination {
     margin-top: 20px; /* Tambahkan jarak antara tabel dan pagination */
 }
+
+
 /* Style dasar untuk body */
 body {
     font-family: Arial, sans-serif;
@@ -86,7 +88,7 @@ body {
 
 /* Container untuk form */
 .form-container {
-    width: 400px;
+    width: 500px;
     background: white;
     padding: 20px;
     margin: auto;

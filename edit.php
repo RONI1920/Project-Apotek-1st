@@ -32,12 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>Edit Obat</h1>
+    <div class="form-container">
     <form method="POST">
-        <input type="text" name="nama" value="<?= $row['nama']; ?>" required><br>
-        <input type="number" name="harga" value="<?= $row['harga']; ?>" required><br>
-        <textarea name="deskripsi" required><?= $row['deskripsi']; ?></textarea><br>
+        <div class="form-group">
+        <input type="text" name="nama" value="<?= $row['nama']; ?>" required>
+        </div>
+        <br>
+        <div class="form-group">
+        <input type="number" name="harga" value="<?= $row['harga']; ?>" required>
+        </div>
+        <br>
+        <div class="form-group">
+        <textarea name="deskripsi" required><?= $row['deskripsi']; ?></textarea>
+        </div>
+        <br>
         <button type="submit">Simpan Perubahan</button>
     </form>
+    </div>
     <br>
     <a href="index.php">Kembali</a>
 </body>

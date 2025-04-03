@@ -33,19 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Kelola Stok Obat</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h2>Kelola Stok: <?= $obat['nama']; ?></h2>
+    <div class="form-container">
     <form method="POST">
+        <div class="form-group">
         <input type="hidden" name="id" value="<?= $obat['id']; ?>">
         <label>Stok Saat Ini:</label>
         <input type="number" value="<?= $obat['stok']; ?>" readonly>
+        </div>
         <br>
+        <div class="form-group">
         <label>Ubah Stok:</label>
         <input type="number" name="stok_baru" value="<?= $obat['stok']; ?>" required>
+        </div>
         <br>
         <button type="submit">Simpan</button>
     </form>
+    </div>
     <a href="index.php">Kembali</a>
 </body>
 </html>

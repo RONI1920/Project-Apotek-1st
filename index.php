@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "config.php";
 require_once __DIR__ . '/fpdf/fpdf.php';
 
@@ -31,11 +32,11 @@ $result = mysqli_query($conn, $sql);
 <body>
     <h1>DAFTAR OBAT APOTEK BERKAH</h1>
 
-    <form method="GET">
+    <form method="GET" class="form-container">
         <input type="text" name="search" placeholder="Cari obat..." value="<?= $search ?>">
         <button type="submit">Cari</button>
     </form>
-
+    <br>
 
     <table>
     <tr>
@@ -74,16 +75,17 @@ $result = mysqli_query($conn, $sql);
     </div>
 
 
+    <div class="form-container">
     <a href="laporan.php" class="laporan">Laporan Penjualan</a>
     <a href="cetak_laporan.php" class="cetak" target="_blank">Cetak PDF</a>
     <a href="admin.php" class="tambah">Tambah Obat</a>
+    </div>
 
     <?php if (isset($_SESSION['admin'])) : ?>
         <br><br>
-        <a href="logout.php" class="hapus">Logout</a>
     <?php endif; ?>
-
-
+        <br>
+    <a href="logout.php" class="logout">Logout</a>
 
 </body>
 </html>

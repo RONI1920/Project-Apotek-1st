@@ -27,9 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h1>Login Admin</h1>
     <form method="POST">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
+        <div class="form-container">
+            <div class="form-group">
+        <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <br>
+        <div class="form-group">
+        <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <br>
+        <button type="submit" class="a">Login</button>
     </form>
+    </div>
 </body>
 </html>
