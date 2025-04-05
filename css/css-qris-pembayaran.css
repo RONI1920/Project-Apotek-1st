@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f9fc;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.harga {
+    font-size: 22px;
+    color: green;
+    margin: 10px 0;
+}
+
+.qris-box {
+    margin: 20px 0;
+}
+
+.qris-img {
+    max-width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.petunjuk {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+}
+
+.konfirmasi {
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 15px;
+    background: #eee;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+}

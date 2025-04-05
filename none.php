@@ -41,6 +41,7 @@ $result = mysqli_query($conn, $sql);
     <table>
     <tr>
         <th>Nama Obat</th>
+        <th>Deskripsi</th>
         <th>Harga</th>
         <th>Stok</th>
         <th>Aksi</th>
@@ -48,11 +49,12 @@ $result = mysqli_query($conn, $sql);
     <?php while ($row = mysqli_fetch_assoc($result)) : ?>
     <tr>
         <td><?= $row['nama']; ?></td>
+        <td><?= $row['deskripsi']; ?></td>
         <td>Rp. <?= number_format($row['harga']); ?></td>
         <td><?= $row['stok']; ?></td>
-        <td>
-        <a href="penjualan.php">Penjualan</a> |
-        <a href="stok.php?id=<?= $row['id']; ?>">Kelola Stok</a> |
+    <td>
+        <a href="penjualan.php">Penjual</a> |
+        <a href="stok.php?id=<?= $row['id']; ?>">Cek Stok</a> |
         <a href="edit.php?id=<?= $row['id']; ?>">Edit</a> |
         <a href="hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Yakin ingin menghapus?');">Hapus</a>
     </td>
@@ -74,17 +76,14 @@ $result = mysqli_query($conn, $sql);
         <?php endif; ?>
     </div>
 
-
-    <div class="form-container">
+    <a href="katalog.php" class="katalog">Katalog Obat</a>
     <a href="laporan.php" class="laporan">Laporan Penjualan</a>
-    <a href="cetak_laporan.php" class="cetak" target="_blank">Cetak PDF</a>
     <a href="admin.php" class="tambah">Tambah Obat</a>
-    </div>
+    <a href="cetak_laporan.php" class="cetak" target="_blank">Cetak PDF</a>
 
     <?php if (isset($_SESSION['admin'])) : ?>
         <br><br>
     <?php endif; ?>
-        <br>
     <a href="logout.php" class="logout">Logout</a>
 
 </body>

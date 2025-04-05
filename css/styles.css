@@ -69,6 +69,12 @@ a.cetak {
     display: inline-block;
     margin-top: 10px;
 }
+a.katalog {
+    background-color: #ff9800;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
 .cari {
     margin-bottom: 30px; /* Tambahkan jarak antara form dan tabel */
 }
@@ -88,13 +94,14 @@ body {
 
 /* Container untuk form */
 .form-container {
-    width: 500px;
+    width: 600px;
     background: white;
-    padding: 20px;
+    padding: 30px;
     margin: auto;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     border-radius: 10px;
 }
+
 
 /* Style untuk form-group */
 .form-group {
