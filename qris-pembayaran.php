@@ -29,7 +29,7 @@ $total = $_POST['total'];
 
     <p class="konfirmasi">📩 Setelah pembayaran, kirim bukti ke WhatsApp: <strong>0812-XXXX-XXXX</strong></p>
 
-    <a href="katalog-obat-keras.php" class="btn-back">← Kembali ke Katalog</a>
+    <a href="../APOTEK_RONI/pages/katalog-obat-bebas.php" class="btn-back">← Kembali ke Katalog</a>
 </div>
 </body>
 </html>

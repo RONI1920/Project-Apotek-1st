@@ -56,7 +56,7 @@ $tanggal = date("d-m-Y");
         <strong>0812-XXXX-XXXX</strong>
     </p>
 
-    <a class="btn-back" href="katalog-obat-keras.php">&larr; Kembali Belanja</a>
+    <a class="btn-back" href="../APOTEK_RONI/pages/katalog-obat-bebas.php">&larr; Kembali Belanja</a>
 </div>
 
 <div class="footer">

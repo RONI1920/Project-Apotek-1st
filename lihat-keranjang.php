@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "config.php";
+include("config/config.php");
 
 // Tambah item ke keranjang jika ada parameter ?add=
 if (isset($_GET['add'])) {

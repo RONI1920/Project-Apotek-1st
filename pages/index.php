@@ -50,9 +50,9 @@ if ($hour >= 5 && $hour < 11) {
                         <span>Produk</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="..pages/katalog-obat-keras.php">Obat Keras</a></li>
-                        <li><a href="katalog-obat-sedang.php">Obat Sedang</a></li>
-                        <li><a href="katalog-obat-terlarang.php">Obat Terlarang</a></li>
+                        <li><a href="Katalog-obat-keras.php">Obat Keras</a></li>
+                        <li><a href="../pages/katalog-obat-sedang.php">Obat Sedang</a></li>
+                        <li><a href="../pages/katalog-obat-keras.php">Obat Bebas</a></li>
                     </ul>
                 </div>
             </li>
