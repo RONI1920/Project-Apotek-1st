@@ -7,7 +7,7 @@ if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
-$result = $conn->query("SELECT * FROM obat");
+$result = $conn->query("SELECT * FROM produk");
 
 if (!$result) {
     die("Query gagal: " . $conn->error);
@@ -23,13 +23,13 @@ if (!$result) {
 </head>
 <body>
 
-<h2 class="judul">Katalog Obat Lengkap & Terpercaya</h2>    
+<h2 class="judul">Katalog Obat</h2>    
 
 <div class="katalog-container">
     <?php while ($row = $result->fetch_assoc()): ?>
         <div class="produk-card">
-            <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama']) ?>">
-            <h4><?= htmlspecialchars($row['nama']) ?></h4>
+            <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
+            <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
             <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
             <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
 

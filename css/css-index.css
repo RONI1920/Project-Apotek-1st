@@ -347,3 +347,64 @@ main {
     object-fit: cover;
     border: 2px solid #ccc;
 }
+
+/* Dropdown posisi relatif */
+.user-dropdown {
+    position: relative;
+}
+
+/* Submenu */
+.header-submenu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: #ffffff;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/* Tampilkan saat hover */
+.user-dropdown:hover .header-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Item submenu */
+.header-submenu li a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.header-submenu li a:hover {
+    background-color: #f0f0f0;
+    color: #00796b;
+}
+
+/* Tambahkan panah ke kanan */
+.header-submenu li a::after {
+    content: '→';
+    float: right;
+    margin-left: 8px;
+    font-size: 13px;
+    color: #888;
+    transition: transform 0.3s ease;
+}
+
+.header-submenu li a:hover::after {
+    transform: translateX(4px);
+    color: #00796b;
+}

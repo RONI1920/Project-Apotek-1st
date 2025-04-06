@@ -50,12 +50,13 @@ if ($hour >= 5 && $hour < 11) {
                         <span>Produk</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="Katalog-obat-keras.php">Obat Keras</a></li>
-                        <li><a href="../pages/katalog-obat-sedang.php">Obat Sedang</a></li>
-                        <li><a href="../pages/katalog-obat-keras.php">Obat Bebas</a></li>
+                        <li><a href="katalog-obat1.php/">Obat</a></li>
+                        <li><a href="../pages/katalog-vitamin-suplemen.php">Vitamin</a></li>
+                        <li><a href="../pages/katalog-alat-kesehatan.php">Alat Medis</a></li>
+                        <li><a href="../pages/tambah-produk.php">Tambah Produk</a></li>
                     </ul>
                 </div>
-            </li>
+            </li>   
             <li>
                 <a href="">
                     <img src="../icon/9710991.png" class="menu-icon" alt="Kategori" />
@@ -70,12 +71,6 @@ if ($hour >= 5 && $hour < 11) {
             </li>
         </ul>
 
-        <div class="logout-sidebar">
-            <a href="../auth/logout.php" title="Logout">
-                <img src="../icon/4033019.png" class="menu-icon" alt="Logout" />
-                <span>Logout</span>
-            </a>
-        </div>
     </aside>
 
     <!-- Main Content -->
@@ -83,29 +78,38 @@ if ($hour >= 5 && $hour < 11) {
 
         <!-- Header -->
         <header class="header">
-            <div class="header-right">
+    <div class="header-right">
+        <div class="user-dropdown">
+            <div class="user-info">
                 <span class="username"><?= htmlspecialchars($_SESSION['username']) ?></span>
-                <!-- Jika ingin sembunyikan foto, cukup hapus atau beri komentar di bawah -->
                 <img src="../icon/pngtree-vector-users-icon-png-image_856952.jpg" alt="User Photo" class="user-photo">
             </div>
-        </header>
+            <ul class="header-submenu">
+                <li><a href="#">Profil Saya</a></li>
+                <li><a href="#">Pengaturan</a></li>
+                <li><a href="../auth/logout.php" title="Logout">Keluar</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
 
         <!-- Konten Utama -->
         <section class="content">
         <h2><?= $greeting . ", " . htmlspecialchars($_SESSION['username']) ?></h2>
             <p>Silakan pilih kategori obat untuk melihat produk kami.</p>
             <div class="kategori-grid">
-                <a href="katalog-obat-keras.php" class="kategori-card">
-                    <img src="../icon/obat_keras_h7diak.png" alt="Obat Keras" />
-                    <p>Obat Keras</p>
+                <a href="katalog-obat1.php" class="kategori-card">
+                    <img src="../icon/images.png" alt="Obat Keras" />
+                    <p>Obat-obatan</p>
                 </a>
-                <a href="katalog-obat-bebas.php" class="kategori-card">
+                <a href="katalog-vitamin-suplemen.php" class="kategori-card">
                     <img src="../icon/hipwee-terbatas.jpg" alt="Obat Sedang" />
-                    <p>Obat Sedang</p>
+                    <p>Vitamin dan Suplemen</p>
                 </a>
-                <a href="katalog-obat-sedang.php" class="kategori-card">
+                <a href="katalog-alat-kesehatan.php" class="kategori-card">
                     <img src="../icon/logo-obat-bebas-doktersehat-300x300.png" alt="Obat Bebas" />
-                    <p>Obat Bebas</p>
+                    <p>Alat Kesehatan</p>
                 </a>
             </div>
         </section>

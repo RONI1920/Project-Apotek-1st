@@ -73,7 +73,7 @@ if (isset($_POST['checkout'])) {
         <strong>Oops!</strong> Keranjang Anda masih kosong. Yuk, pilih produk terlebih dahulu!
     </div>
     <div class="footer">
-        <a href="katalog-obat-keras.php">&larr; Kembali ke Katalog</a>
+        <a href="../APOTEK_RONI/pages/katalog-obat-bebas.php">&larr; Kembali ke Katalog</a>
     </div>
 <?php else: ?>
 <form method="POST">
