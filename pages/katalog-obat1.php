@@ -34,7 +34,7 @@ if (!$result) {
             <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
 
             <a href="../detail.php?id=<?= urlencode($row['id']) ?>" class="btn">Lihat Detail</a>
-            <a href="../lihat-keranjang.php?add=<?= urlencode($row['id']) ?>" class="btn tambah">+ Tambahkan ke Keranjang</a>
+            <a href="lihat-keranjang.php?add=<?= urlencode($row['id']) ?>" class="btn"> Masuk Keranjang</a>
         </div>
     <?php endwhile; ?>
 </div>

@@ -64,6 +64,12 @@ if ($hour >= 5 && $hour < 11) {
                 </a>
             </li>
             <li>
+                <a href="../pages/admin-aksi.php">
+                    <img src="../icon/9710991.png" class="menu-icon" alt="Kategori" />
+                    <span>Menu Admin</span>
+                </a>
+            </li>
+            <li>
                 <a href="">
                     <img src="../icon/6928347.png" class="menu-icon" alt="Tentang" />
                     <span>Tentang Kami</span>

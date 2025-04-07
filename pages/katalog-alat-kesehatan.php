@@ -40,8 +40,10 @@ if (!$result) {
 </div>
 
 <div class="footer">
+    <a href="../pages/admin-aksi.php">Dashbord Admin</a>
     <a href="../pages/index.php">← Kembali ke Menu</a> |
-    <a href="../lihat-keranjang.php">🛒 Lihat Keranjang</a>
+    <a href="../lihat-keranjang.php">🛒 Lihat Keranjang</a> |
+    <a href="../pages/admin-aksi.php">Dashbord Admin</a>
 </div>
 
 

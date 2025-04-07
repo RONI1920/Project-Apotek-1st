@@ -1,7 +1,6 @@
 <?php
 session_start();
-include("config/config.php");
-
+include("../config/config.php");
 // Tambah item ke keranjang jika ada parameter ?add=
 if (isset($_GET['add'])) {
     $id = $_GET['add'];
@@ -42,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
             $_SESSION['keranjang'][$id]['jumlah'] = $jumlah;
         }
     }
-    header("Location: lihat-keranjang.php");
+    header("Location: katalog-obat1.php");
     exit;
 }
 
@@ -59,11 +58,10 @@ if (isset($_POST['checkout'])) {
 <head>
     <meta charset="UTF-8">
     <title>Keranjang Belanja</title>
-    <link rel="stylesheet" href="css/css-lihat-keranjang.css">
+    <link rel="stylesheet" href="../css/css-lihat-keranjang.css">
 </head>
 <body>
 <h2 class="judul">🛒 Keranjang Belanja</h2>
-
 <?php if (!empty($pesan)): ?>
     <p style="color: green; text-align:center;"><strong><?= $pesan ?></strong></p>
 <?php endif; ?>
@@ -93,7 +91,7 @@ if (isset($_POST['checkout'])) {
             $grandTotal += $total;
         ?>
         <tr>
-            <td><img src="images/<?= htmlspecialchars($item['gambar']) ?>" width="50"></td>
+            <td><img src="../images/<?= htmlspecialchars($item['gambar']) ?>" width="50"></td>
             <td><?= htmlspecialchars($item['nama']) ?></td>
             <td>Rp <?= number_format($item['harga'], 0, ',', '.') ?></td>
             <td>

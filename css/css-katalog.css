@@ -1,40 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f9f9f9;
-}
+/* css-katalog.css */
 
-h2.judul {
-    text-align: center;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f7f5;
     color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
-    font-weight: bold;
 }
 
 .judul {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+    margin: 30px 0;
+    font-size: 28px;
+    color: #2a9d8f;
 }
 
 .katalog-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .produk-card {
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    width: 200px;
-    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s;
 }
 
 .produk-card:hover {
@@ -42,45 +38,74 @@ h2.judul {
 }
 
 .produk-card img {
-    width: 100%;
+    max-width: 100%;
     height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
+    object-fit: contain;
+    margin-bottom: 15px;
 }
 
 .produk-card h4 {
     margin: 10px 0 5px;
-    font-size: 16px;
-    color: #222;
+    font-size: 18px;
+    color: #264653;
 }
 
 .harga {
-    margin: 3px 0;
     font-weight: bold;
-    color: #28a745;
+    color: #e76f51;
+    margin: 5px 0;
 }
 
 .stok {
     font-size: 14px;
     color: #555;
+    margin-bottom: 15px;
 }
 
-.btn {
-    margin-top: 10px;
+.btn, .produk-card a {
     display: inline-block;
-    padding: 6px 12px;
-    background-color: #28a745;
-    color: white;
-    border-radius: 5px;
+    margin: 5px;
+    padding: 8px 15px;
+    background-color: #2a9d8f;
+    color: #fff;
     text-decoration: none;
+    border-radius: 8px;
     font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-.btn:hover {
-    background-color: #218838;
+.btn:hover, .produk-card a:hover {
+    background-color: #21867a;
 }
 
 .footer {
     text-align: center;
-    margin-top: 30px;
+    margin: 40px 0;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #2a9d8f;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.btn-tambah {
+    background-color: #e76f51;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    margin: 5px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-tambah:hover {
+    background-color: #c1583e;
 }

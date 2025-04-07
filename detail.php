@@ -14,7 +14,7 @@ if (!$id) {
     die("ID obat tidak ditemukan.");
 }
 
-$stmt = $conn->prepare("SELECT * FROM obat WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM produk WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -39,16 +39,16 @@ $obat = $result->fetch_assoc();
 
 <div class="container">
     <div class="image">
-        <img src="images/<?= htmlspecialchars($obat['gambar']) ?>" alt="<?= htmlspecialchars($obat['nama']) ?>">
+        <img src="images/<?= htmlspecialchars($obat['gambar']) ?>" alt="<?= htmlspecialchars($obat['nama_produk']) ?>">
     </div>
     <div class="info">
-        <h1><?= htmlspecialchars($obat['nama']) ?></h1>
+        <h1><?= htmlspecialchars($obat['nama_produk']) ?></h1>
         <p class="harga">Rp <?= number_format($obat['harga'], 0, ',', '.') ?></p>
         <p class="stok">Stok: <?= htmlspecialchars($obat['stok']) ?> pcs</p>
         <p class="deskripsi"><?= nl2br(htmlspecialchars($obat['deskripsi'] ?? '')) ?></p>
         <div class="actions">
             <a href="lihat-keranjang.php?add=<?= $obat['id'] ?>" class="btn tambah">+ Tambahkan ke Keranjang</a>
-            <a href="pages/katalog-obat-keras.php" class="btn kembali">← Kembali</a>
+            <a href="pages/katalog-obat1.php" class="btn kembali">← Kembali</a>
         </div>
     </div>
 </div>
