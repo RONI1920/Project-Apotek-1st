@@ -108,9 +108,9 @@ $result = mysqli_query($conn, $sql);
     </div>
 
     <div class="menu-actions">
-    <a href="../pages/katalog-obat1.php" class="katalog">Katalog Produk</a>
+    <a href="../pages/index.php" class="katalog">Katalog Produk</a>
     <a href="laporan.php" class="laporan">Laporan Penjualan</a>
-    <a href="admin.php" class="tambah">Tambah Produk</a>
+    <a href="../pages/tambah-produk.php" class="tambah">Tambah Produk</a>
     <a href="cetak_laporan.php" class="cetak" target="_blank">Cetak PDF</a>
     </div>
 

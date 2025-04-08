@@ -20,7 +20,7 @@ $tanggal = date("d-m-Y");
 <head>
     <meta charset="UTF-8">
     <title>Pembayaran</title>
-    <link rel="stylesheet" href="css/css-pembayaran.css">
+    <link rel="stylesheet" href="../css/css-pembayaran.css">
 </head>
 <body>
 <div class="container">

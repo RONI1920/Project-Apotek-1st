@@ -35,6 +35,8 @@ if (isset($_GET['add'])) {
     }
 }
 
+
+
 // Jika tidak ada produk
 header("Location: katalog-obat.php?status=failed");
 exit;

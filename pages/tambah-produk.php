@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("ssiiss", $nama, $kategori, $harga, $stok, $deskripsi, $nama_file);
 
                 if ($stmt->execute()) {
-                    header("Location: ../pages/index.php");
+                    header("Location: ../pages/admin-aksi.php");
                     exit();
                 } else {
                     echo "<script>alert('Gagal menyimpan data ke database.');</script>";
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select name="kategori" required>
                     <option value="">-- Pilih Kategori --</option>
                     <option value="obat">Obat</option>
-                    <option value="alat_kesehatan">Alat Kesehatan</option>
-                    <option value="suplemen">Suplemen</option>
+                    <option value="vitamin">Vitamin dan Suplemen</option>
+                    <option value="alat">Alat Kesehatan</option>
                     <!-- Tambah kategori lain jika perlu -->
                 </select>
             </div><br>

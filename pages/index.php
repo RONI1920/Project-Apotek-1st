@@ -53,7 +53,6 @@ if ($hour >= 5 && $hour < 11) {
                         <li><a href="../pages/katalog-obat.php">Obat</a></li>
                         <li><a href="../pages/katalog-vitamin-suplemen.php">Vitamin</a></li>
                         <li><a href="../pages/katalog-alat-kesehatan.php">Alat Medis</a></li>
-                        <li><a href="../pages/tambah-produk.php">Tambah Produk</a></li>
                     </ul>
                 </div>
             </li>   
@@ -105,15 +104,15 @@ if ($hour >= 5 && $hour < 11) {
         <h2><?= $greeting . ", " . htmlspecialchars($_SESSION['username']) ?></h2>
             <p>Silakan pilih kategori obat untuk melihat produk kami.</p>
             <div class="kategori-grid">
-                <a href="katalog-obat.php" class="kategori-card">
+            <a href="katalog-obat.php?kategori=obat" class="kategori-card">
                     <img src="../icon/images.png" alt="Obat Keras" />
                     <p>Obat-obatan</p>
                 </a>
-                <a href="katalog-vitamin-suplemen.php" class="kategori-card">
+                <a href="katalog-vitamin-suplemen.php?kategori=vitamin" class="kategori-card">
                     <img src="../icon/8885328.png" alt="Obat Sedang" />
                     <p>Vitamin dan Suplemen</p>
                 </a>
-                <a href="katalog-alat-kesehatan.php" class="kategori-card">
+                <a href="katalog-alat-kesehatan.php?kategori=alat" class="kategori-card">
                     <img src="../icon/stethoscope_doctor_health_medical_healthcare_icon_133555.webp" alt="Obat Bebas" />
                     <p>Alat Kesehatan</p>
                 </a>

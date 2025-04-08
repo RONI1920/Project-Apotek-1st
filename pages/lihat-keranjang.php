@@ -1,8 +1,15 @@
 <?php
 session_start();
-include("../config/config.php");
 
-// Hapus item
+include('../config/config.php');
+
+// Arahkan ke pembayaran saat checkout
+if (isset($_POST['checkout'])) {
+    header("Location: pembayaran.php");
+    exit();
+}
+
+// Hapus item dari keranjang
 if (isset($_GET['hapus'])) {
     $id = (int) $_GET['hapus'];
     unset($_SESSION['keranjang'][$id]);
@@ -10,26 +17,23 @@ if (isset($_GET['hapus'])) {
     exit;
 }
 
-// Update jumlah
+// Update jumlah item
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     foreach ($_POST['jumlah'] as $id => $jumlah) {
         $id = (int) $id;
         $jumlah = (int) $jumlah;
+
+        // Validasi: jika jumlah 0 atau kurang, hapus dari keranjang
         if ($jumlah <= 0) {
             unset($_SESSION['keranjang'][$id]);
         } else {
-            $_SESSION['keranjang'][$id]['jumlah'] = $jumlah;
+            if (isset($_SESSION['keranjang'][$id]) && is_array($_SESSION['keranjang'][$id])) {
+                $_SESSION['keranjang'][$id]['jumlah'] = $jumlah;
+            }
         }
     }
     header("Location: lihat-keranjang.php");
     exit;
-}
-
-// Checkout simulasi
-$pesan = "";
-if (isset($_POST['checkout'])) {
-    $_SESSION['keranjang'] = [];
-    $pesan = "✅ Terima kasih! Pesanan Anda berhasil diproses.";
 }
 ?>
 
@@ -43,10 +47,6 @@ if (isset($_POST['checkout'])) {
 <body>
 
 <h2 class="judul">🛒 Keranjang Belanja Anda</h2>
-
-<?php if (!empty($pesan)): ?>
-    <p style="color: green; text-align:center;"><strong><?= $pesan ?></strong></p>
-<?php endif; ?>
 
 <?php if (empty($_SESSION['keranjang'])): ?>
     <div class="notifikasi-kosong">
@@ -74,12 +74,13 @@ if (isset($_POST['checkout'])) {
         ?>
         <tr>
             <td><img src="../images/<?= htmlspecialchars($item['gambar']) ?>" width="50"></td>
-            <td><?= htmlspecialchars($item['nama']) ?></td>
+            <td><?= htmlspecialchars($item['nama']) ?></td> <!-- ganti dari 'nama_produk' ke 'nama' -->
             <td>Rp <?= number_format($item['harga'], 0, ',', '.') ?></td>
             <td><input type="number" name="jumlah[<?= $id ?>]" value="<?= $item['jumlah'] ?>" min="1"></td>
             <td>Rp <?= number_format($total, 0, ',', '.') ?></td>
             <td><a href="?hapus=<?= $id ?>" onclick="return confirm('Hapus item ini?')">🗑 Hapus</a></td>
         </tr>
+
         <?php endforeach; ?>
         <tr>
             <th colspan="4">Total Belanja</th>
@@ -92,7 +93,7 @@ if (isset($_POST['checkout'])) {
     </div>
 </form>
 <div class="footer" style="text-align:center; margin-top:20px;">
-    <a href="katalog-obat.php">← Lanjut Belanja</a>
+    <a href="../pages/index.php">← Lanjut Belanja</a>
 </div>
 <?php endif; ?>
 
