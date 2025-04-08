@@ -1,0 +1,61 @@
+<?php
+session_start();
+include("../config/config.php");
+
+$result = $conn->query("SELECT * FROM produk");
+
+if (!$result) {
+    die("Gagal mengambil data produk: " . $conn->error);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Katalog Obat - Apotek Sehat</title>
+    <link rel="stylesheet" href="../css/css-katalog.css">
+    <link rel="stylesheet" href="../css/notifikasi.css">
+</head>
+<body>
+
+<h2 class="judul">Katalog Obat Lengkap & Terpercaya</h2>
+
+<?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+    <div class="notifikasi-sukses">
+        ✅ Produk berhasil dimasukkan ke keranjang!
+    </div>
+<?php endif; ?>
+
+<div class="katalog-container">
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="produk-card">
+            <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
+            <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
+            <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
+            <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
+            <a href="keranjang.php?add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
+        </div>
+    <?php endwhile; ?>
+</div>
+
+<div class="footer">
+    <a href="index.php">← Kembali ke Beranda</a> | 
+    <a href="lihat-keranjang.php">🛒 Lihat Keranjang</a>
+</div>
+
+<script>
+    setTimeout(() => {
+        const notif = document.querySelector('.notifikasi-sukses');
+        if (notif) {
+            notif.style.transition = 'opacity 1s';
+            notif.style.opacity = '0';
+            setTimeout(() => notif.remove(), 1000);
+        }
+    }, 5000); // muncul selama 5 detik
+</script>
+
+
+</body>
+</html>

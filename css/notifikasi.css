@@ -1,0 +1,20 @@
+.notifikasi-sukses {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    animation: fadeInOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+}

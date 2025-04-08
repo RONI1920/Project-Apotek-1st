@@ -1,33 +1,33 @@
-/* css-katalog.css */
-
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
-    background-color: #f2f7f5;
     color: #333;
 }
 
 .judul {
     text-align: center;
-    margin: 30px 0;
+    margin-top: 30px;
     font-size: 28px;
     color: #2a9d8f;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .katalog-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    padding: 20px;
+    padding: 30px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .produk-card {
     background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     padding: 20px;
     text-align: center;
     transition: transform 0.2s;
@@ -35,77 +35,98 @@ body {
 
 .produk-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
 .produk-card img {
-    max-width: 100%;
-    height: 150px;
+    width: 100%;
+    max-height: 180px;
     object-fit: contain;
     margin-bottom: 15px;
 }
 
 .produk-card h4 {
-    margin: 10px 0 5px;
     font-size: 18px;
+    margin: 10px 0;
     color: #264653;
 }
 
 .harga {
     font-weight: bold;
     color: #e76f51;
-    margin: 5px 0;
+    font-size: 16px;
 }
 
 .stok {
+    color: #888;
     font-size: 14px;
-    color: #555;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.btn, .produk-card a {
+.btn {
     display: inline-block;
     margin: 5px;
-    padding: 8px 15px;
+    padding: 8px 16px;
     background-color: #2a9d8f;
     color: #fff;
+    border-radius: 6px;
     text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
 }
 
-.btn:hover, .produk-card a:hover {
+.btn:hover {
     background-color: #21867a;
 }
 
 .footer {
     text-align: center;
-    margin: 40px 0;
+    padding: 20px;
     font-size: 14px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
 }
 
 .footer a {
-    color: #2a9d8f;
     text-decoration: none;
-    margin: 0 10px;
+    color: #2a9d8f;
+    margin: 0 5px;
 }
 
 .footer a:hover {
     text-decoration: underline;
 }
 
-.btn-tambah {
-    background-color: #e76f51;
-    color: #fff;
+.notifikasi-sukses {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
     border-radius: 8px;
-    padding: 8px 15px;
-    font-size: 14px;
-    margin: 5px;
-    display: inline-block;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-size: 16px;
+    z-index: 9999;
+    animation: slideIn 0.3s ease, fadeOut 0.5s ease 5s forwards;
 }
 
-.btn-tambah:hover {
-    background-color: #c1583e;
+/* Animasi muncul dari kanan */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animasi hilang pelan */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }

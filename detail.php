@@ -47,7 +47,7 @@ $obat = $result->fetch_assoc();
         <p class="stok">Stok: <?= htmlspecialchars($obat['stok']) ?> pcs</p>
         <p class="deskripsi"><?= nl2br(htmlspecialchars($obat['deskripsi'] ?? '')) ?></p>
         <div class="actions">
-            <a href="lihat-keranjang.php?add=<?= $obat['id'] ?>" class="btn tambah">+ Tambahkan ke Keranjang</a>
+            <a href=" $obat['id'] ?>" class="btn tambah">+ Tambahkan ke Keranjang</a>
             <a href="pages/katalog-obat1.php" class="btn kembali">← Kembali</a>
         </div>
     </div>

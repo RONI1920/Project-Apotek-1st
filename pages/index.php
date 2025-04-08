@@ -50,7 +50,7 @@ if ($hour >= 5 && $hour < 11) {
                         <span>Produk</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="katalog-obat1.php/">Obat</a></li>
+                        <li><a href="../pages/katalog-obat.php">Obat</a></li>
                         <li><a href="../pages/katalog-vitamin-suplemen.php">Vitamin</a></li>
                         <li><a href="../pages/katalog-alat-kesehatan.php">Alat Medis</a></li>
                         <li><a href="../pages/tambah-produk.php">Tambah Produk</a></li>
@@ -65,7 +65,7 @@ if ($hour >= 5 && $hour < 11) {
             </li>
             <li>
                 <a href="../pages/admin-aksi.php">
-                    <img src="../icon/9710991.png" class="menu-icon" alt="Kategori" />
+                    <img src="../icon/3685367.png" class="menu-icon" alt="Kategori" />
                     <span>Menu Admin</span>
                 </a>
             </li>
@@ -105,16 +105,16 @@ if ($hour >= 5 && $hour < 11) {
         <h2><?= $greeting . ", " . htmlspecialchars($_SESSION['username']) ?></h2>
             <p>Silakan pilih kategori obat untuk melihat produk kami.</p>
             <div class="kategori-grid">
-                <a href="katalog-obat1.php" class="kategori-card">
+                <a href="katalog-obat.php" class="kategori-card">
                     <img src="../icon/images.png" alt="Obat Keras" />
                     <p>Obat-obatan</p>
                 </a>
                 <a href="katalog-vitamin-suplemen.php" class="kategori-card">
-                    <img src="../icon/hipwee-terbatas.jpg" alt="Obat Sedang" />
+                    <img src="../icon/8885328.png" alt="Obat Sedang" />
                     <p>Vitamin dan Suplemen</p>
                 </a>
                 <a href="katalog-alat-kesehatan.php" class="kategori-card">
-                    <img src="../icon/logo-obat-bebas-doktersehat-300x300.png" alt="Obat Bebas" />
+                    <img src="../icon/stethoscope_doctor_health_medical_healthcare_icon_133555.webp" alt="Obat Bebas" />
                     <p>Alat Kesehatan</p>
                 </a>
             </div>
