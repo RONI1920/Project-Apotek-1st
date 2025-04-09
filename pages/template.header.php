@@ -1,5 +1,9 @@
 <?php
 session_start();
+include('../config/config.php');
+require_once __DIR__ . '/../fpdf/fpdf.php';
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
 if (!isset($_SESSION['username'])) {
     header("Location: ../auth/form-login.php?timeout=true");
     exit;
@@ -7,6 +11,8 @@ if (!isset($_SESSION['username'])) {
 
 date_default_timezone_set('Asia/Jakarta'); // pastikan zona waktu benar
 $hour = date("H");
+
+$roni = "roni"; 
 
 if ($hour >= 5 && $hour < 11) {
     $greeting = "Selamat Pagi";
@@ -17,6 +23,7 @@ if ($hour >= 5 && $hour < 11) {
 } else {
     $greeting = "Selamat Malam";
 }
+
 ?>
 
 
@@ -29,6 +36,8 @@ if ($hour >= 5 && $hour < 11) {
     <link rel="stylesheet" href="../css/css-index.css" />
     <link rel="stylesheet" href="../css/css-katalog.css">
     <link rel="stylesheet" href="../css/notifikasi.css">
+    <link rel="stylesheet" href="../css/css-admin-aksi.css">
+
 </head>
 <body>
 <div class="container">
@@ -101,5 +110,5 @@ if ($hour >= 5 && $hour < 11) {
 </header>
 
 
-        <!-- Konten Utama -->
+        <!-- Konten Utama -->   
         <section class="content">
