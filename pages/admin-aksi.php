@@ -1,35 +1,9 @@
 <?php
-session_start();
-include('../config/config.php');
-require_once __DIR__ . '/../fpdf/fpdf.php';
+require_once('./template.header.php');
+require_once('logic.php');
 
-$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Atur jumlah data per halaman
-$limit = 5;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$offset = ($page - 1) * $limit;
-
-// Ambil total data dari tabel `produk`
-$total_query = mysqli_query($conn, "SELECT COUNT(*) as total FROM produk WHERE nama_produk LIKE '%$search%'");
-$total_result = mysqli_fetch_assoc($total_query);
-$total_rows = $total_result['total'];
-$total_pages = ceil($total_rows / $limit);
-
-// Ambil data dengan limit & offset dari tabel `produk`
-$sql = "SELECT * FROM produk WHERE nama_produk LIKE '%$search%' LIMIT $limit OFFSET $offset";
-$result = mysqli_query($conn, $sql);
 ?>
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apotek Sederhana</title>
-    <link rel="stylesheet" href="../css/css-admin-aksi.css">
-</head>
-<body>
     <h1>DAFTAR PRODUK APOTEK BERKAH</h1>
 
     <form method="GET" class="form-container">
@@ -119,5 +93,4 @@ $result = mysqli_query($conn, $sql);
     <?php endif; ?>
     <a href="../pages/index.php">← Kembali ke Menu</a>
 
-</body>
-</html>
+<?php require_once "template.footer.php" ?>
