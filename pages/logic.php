@@ -14,8 +14,4 @@ $total_pages = ceil($total_rows / $limit);
 $sql = "SELECT * FROM produk WHERE nama_produk LIKE '%$search%' LIMIT $limit OFFSET $offset";
 $result = mysqli_query($conn, $sql);
 
-echo $roni;
-
-$
-
 ?>
