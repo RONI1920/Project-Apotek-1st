@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+require_once('./template.header.php');
 include("../config/config.php");
 
 $result = $conn->query("SELECT * FROM produk WHERE kategori = 'obat' LIMIT 10");
@@ -9,16 +10,6 @@ if (!$result) {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Katalog Obat - Apotek Sehat</title>
-    <link rel="stylesheet" href="../css/css-katalog.css">
-    <link rel="stylesheet" href="../css/notifikasi.css">
-</head>
-<body>
 
 <h2 class="judul">Katalog Obat Lengkap & Terpercaya</h2>
 
@@ -61,6 +52,3 @@ if (!$result) {
     }, 5000); // muncul selama 5 detik
 </script>
 
-
-</body>
-</html>
