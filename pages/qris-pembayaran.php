@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['total'])) {
-    header("Location: pembayaran.php");
+    header("Location: kwitansi.php");
     exit;
 }
 
@@ -17,6 +17,11 @@ $total = $_POST['total'];
 </head>
 <body>
 <div class="container">
+<form method="POST" action="kwitansi.php">
+    <input type="hidden" name="total" value="<?= $total ?>">
+    <button type="submit" class="btn-bayar">✅ Saya Sudah Bayar</button>
+</form>
+
     <h2>🔍 Scan QR untuk Bayar</h2>
     
     <p><strong>Total Pembayaran:</strong></p>
@@ -31,5 +36,32 @@ $total = $_POST['total'];
 
     <a href="../pages/index.php" class="btn-back">← Kembali ke Katalog</a>
 </div>
+
+<script>
+    let countdown = 300; // 5 menit (300 detik)
+    const timerDisplay = document.createElement('p');
+    timerDisplay.style.fontSize = '16px';
+    timerDisplay.style.fontWeight = 'bold';
+    timerDisplay.style.color = '#333';
+    document.querySelector('.container').appendChild(timerDisplay);
+
+    function updateTimer() {
+        const minutes = Math.floor(countdown / 60);
+        const seconds = countdown % 60;
+        timerDisplay.textContent = `⏳ Waktu tersisa untuk pembayaran: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        if (countdown <= 0) {
+            clearInterval(interval);
+            window.location.href = "../pages/index.php"; // redirect jika waktu habis
+        }
+
+        countdown--;
+    }
+
+    const interval = setInterval(updateTimer, 1000);
+    updateTimer(); // jalankan langsung sekali di awal
+</script>
+
+
 </body>
 </html>

@@ -47,7 +47,7 @@ if (!$result) {
 
 <div class="footer">
     <a href="index.php">← Kembali ke Beranda</a> | 
-    <a href="lihat-keranjang.php">🛒 Lihat Keranjang</a>
+    <a href="preview-keranjang.php">🛒 Lihat Keranjang</a>
 </div>
 
 <script>

@@ -68,7 +68,7 @@ $result = mysqli_query($conn, $sql);
                 <td><?= htmlspecialchars($row['kategori']); ?></td>
                 <td><?= $row['stok']; ?></td>
                 <td>
-                    <a href="edit.php?id=<?= $row['id']; ?>">Edit</a> |
+                    <a href="../pages/edit.php=<?= $row['id']; ?>">Edit</a> |
                     <a href="hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Yakin ingin menghapus?');">Hapus</a>
                 </td>
                 <td>

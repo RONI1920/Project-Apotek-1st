@@ -1,73 +1,73 @@
+/* css-pembayaran.css */
 body {
-    font-family: sans-serif;
-    background: #f6f9fc;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
-
 .container {
-    max-width: 500px;
-    margin: auto;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-h2 {
-    text-align: center;
-    color: #007bff;
+.kategori-pembayaran {
+    margin-bottom: 25px;
 }
 
-p, li {
-    font-size: 16px;
+.kategori-pembayaran h3 {
+    font-size: 18px;
     margin-bottom: 10px;
-}
-
-.harga-total {
-    font-size: 22px;
-    color: green;
-}
-
-.expired-time {
-    color: red;
-}
-
-.qris {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.qris img {
-    max-width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-
-.qris-info {
-    font-size: 14px;
-    color: #666;
-    margin-top: 8px;
-}
-
-.info-wa {
-    margin-top: 20px;
-}
-
-.btn-back {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background: #eee;
-    border-radius: 6px;
-    text-decoration: none;
     color: #333;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 13px;
-    color: #777;
+.opsi-pembayaran {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
 }
-    
+
+.opsi-pembayaran:hover {
+    background-color: #f2f2f2;
+}
+
+.opsi-pembayaran img {
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background: #218838;
+}
+
+.button-kembali {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.button-kembali:hover {
+    background-color: #5a6268;
+}

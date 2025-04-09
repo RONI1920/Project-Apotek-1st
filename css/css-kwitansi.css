@@ -1,0 +1,71 @@
+/* css-kwitansi.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.kwitansi-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #2a9d8f;
+}
+
+.header p {
+    margin: 4px 0 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.header hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 25px;
+}
+
+.harga {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e76f51;
+}
+
+.thanks {
+    margin-top: 20px;
+    background: #e0f7fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: #00796b;
+}
+
+.btn-kembali {
+    display: inline-block;
+    margin-top: 25px;
+    background: #2a9d8f;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-kembali:hover {
+    background: #21867a;
+}
