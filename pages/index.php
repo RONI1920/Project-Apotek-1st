@@ -2,8 +2,7 @@
     require_once('./template.header.php');
 ?>
 
-<h2><?= $greeting . ", " . htmlspecialchars($_SESSION['username']) ?></h2>
-<p>Silakan pilih kategori obat untuk melihat produk kami.</p>
+<p><strong> Pilih Kategori Melihat Produk Kami.</strong></p>
 <div class="kategori-grid">
     <a href="katalog-obat.php?kategori=obat" class="kategori-card">
         <img src="../icon/images.png" alt="Obat Keras" />

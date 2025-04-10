@@ -35,6 +35,8 @@ if ($hour >= 5 && $hour < 11) {
     <link rel="stylesheet" href="../css/css-katalog.css">
     <link rel="stylesheet" href="../css/notifikasi.css">
     <link rel="stylesheet" href="../css/css-admin-aksi.css">
+    <link rel="stylesheet" href="../css/template-header.css">
+
 
 </head>
 <body>
@@ -92,6 +94,9 @@ if ($hour >= 5 && $hour < 11) {
 
         <!-- Header -->
         <header class="header">
+        <div class="header-left">
+            <h2><?= $greeting . ", " . htmlspecialchars($_SESSION['username']) ?>😊</h2>
+            </div>
     <div class="header-right">
         <div class="user-dropdown">
             <div class="user-info">
