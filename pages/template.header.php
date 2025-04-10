@@ -13,13 +13,13 @@ date_default_timezone_set('Asia/Jakarta'); // pastikan zona waktu benar
 $hour = date("H");
 
 if ($hour >= 5 && $hour < 11) {
-    $greeting = "Selamat Pagi";
+    $greeting = "Selamat Pagi Ka";
 } elseif ($hour >= 11 && $hour < 15) {
-    $greeting = "Selamat Siang";
+    $greeting = "Selamat Siang Ka";
 } elseif ($hour >= 15 && $hour < 18) {
-    $greeting = "Selamat Sore";
+    $greeting = "Selamat Sore Ka";
 } else {
-    $greeting = "Selamat Malam";
+    $greeting = "Selamat Malam Ka";
 }
 
 ?>
