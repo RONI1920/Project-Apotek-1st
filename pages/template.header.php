@@ -49,7 +49,7 @@ if ($hour >= 5 && $hour < 11) {
         </div>
         <ul class="menu">
             <li>
-                <a href="">
+                <a href="index.php">
                     <img src="../icon/Home_36756.webp" class="menu-icon" alt="Home" />
                     <span>Beranda</span>
                 </a>

@@ -1,23 +1,15 @@
 <?php
-session_start();
+require_once 'template.header.php';
 include("../config/config.php");
 
-// Ambil kategori dari parameter GET
-$kategori = isset($_GET['kategori']) ? trim($_GET['kategori']) : '';
-
-// Jika kategori kosong, tampilkan pesan
-if (empty($kategori)) {
-    echo "<p style='color:red; text-align:center;'>Kategori tidak ditemukan.</p>";
-    exit;
-}
-
 // Tangani penambahan ke keranjang
-if (isset($_GET['add'])) {
+if (isset($_GET['add']) && isset($_GET['kategori'])) {
     $id_produk = (int) $_GET['add'];
+    $kategori = $_GET['kategori']; // string
 
     // Ambil data produk berdasarkan ID dan KATEGORI
     $stmt = $conn->prepare("SELECT id, nama_produk, harga, gambar, stok, status FROM produk WHERE id = ? AND kategori = ?");
-    $stmt->bind_param("is", $id_produk, $kategori);
+    $stmt->bind_param("is", $id_produk, $kategori); // <- Perbaiki di sini
     $stmt->execute();
     $result = $stmt->get_result();
     $produk = $result->fetch_assoc();
@@ -38,32 +30,22 @@ if (isset($_GET['add'])) {
             ];
         }
 
-        header("Location: katalog-alat-kesehatan.php?kategori=$kategori&status=success");
+        header("Location: katalog-alat-kesehatan.php?status=success");
         exit;
     } else {
-        header("Location: katalog-alat-kesehatan.php?kategori=$kategori&status=failed");
+        header("Location: katalog-alat-kesehatan.php?status=failed");
         exit;
     }
 }
 
-// Ambil data produk dari database berdasarkan kategori
-$query = $conn->prepare("SELECT * FROM produk WHERE kategori = ? ORDER BY nama_produk ASC LIMIT 6");
-$query->bind_param("s", $kategori);
+
+// Ambil data semua produk dengan kategori alat Kesehatan 
+$query = $conn->prepare("SELECT * FROM produk WHERE kategori = 'alat' ORDER BY nama_produk ASC LIMIT 6");
 $query->execute();
 $result = $query->get_result();
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Katalog <?= htmlspecialchars(ucwords(str_replace("-", " ", $kategori))) ?> - Apotek Sehat</title>
-    <link rel="stylesheet" href="../css/css-katalog.css">
-    <link rel="stylesheet" href="../css/notifikasi.css">
-</head>
-<body>
-
-<h2 class="judul">Katalog: <?= htmlspecialchars(ucwords(str_replace("-", " ", $kategori))) ?></h2>
+<h2 class="judul">Katalog Alat Kesehatan</h2>
 
 <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
     <div class="notifikasi-sukses">
@@ -76,28 +58,24 @@ $result = $query->get_result();
 <?php endif; ?>
 
 <div class="katalog-container">
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
-                <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
-                <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
-                <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
-                <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
-                <?php if ($row['status'] == 'nonaktif' || $row['stok'] <= 0): ?>
-                    <button class="btn btn-disabled" disabled>❌ Sold Out</button>
-                <?php else: ?>
-                    <a href="?kategori=<?= urlencode($kategori) ?>&add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
-                <?php endif; ?>
-            </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p style="text-align:center; color:gray;">Tidak ada produk dalam kategori ini.</p>
-    <?php endif; ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
+            <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
+            <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
+            <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
+            <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
+            <?php if ($row['status'] == 'nonaktif' || $row['stok'] <= 0): ?>
+                <button class="btn btn-disabled" disabled>❌ Sold Out</button>
+            <?php else: ?>
+                <a href="?add=<?= $row['id'] ?>&kategori=alat" class="btn">🛒 Masukkan Keranjang</a>
+            <?php endif; ?>
+        </div>
+    <?php endwhile; ?>
 </div>
 
 <div class="footer">
     <a href="index.php">← Kembali ke Beranda</a> |
-    <a href="lihat-keranjang.php">🛒 Lihat Keranjang</a>
+    <a href="preview-keranjang.php">🛒 Lihat Keranjang</a>
 </div>
 
 <script>
@@ -111,5 +89,4 @@ $result = $query->get_result();
     }, 5000);
 </script>
 
-</body>
-</html>
+<?php require_once 'template.footer.php' ?>

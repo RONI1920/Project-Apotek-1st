@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'template.header.php';
 include("../config/config.php");
 
 // Tangani penambahan ke keranjang
@@ -45,16 +45,6 @@ $query->execute();
 $result = $query->get_result();
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Katalog Vitamin - Apotek Sehat</title>
-    <link rel="stylesheet" href="../css/css-katalog.css">
-    <link rel="stylesheet" href="../css/notifikasi.css">
-</head>
-<body>
-
 <h2 class="judul">Katalog Vitamin dan Suplemen</h2>
 
 <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
@@ -99,5 +89,4 @@ $result = $query->get_result();
     }, 5000);
 </script>
 
-</body>
-</html>
+<?php require_once 'template.footer.php' ?>
