@@ -12,8 +12,6 @@ if (!isset($_SESSION['username'])) {
 date_default_timezone_set('Asia/Jakarta'); // pastikan zona waktu benar
 $hour = date("H");
 
-$roni = "roni"; 
-
 if ($hour >= 5 && $hour < 11) {
     $greeting = "Selamat Pagi";
 } elseif ($hour >= 11 && $hour < 15) {
