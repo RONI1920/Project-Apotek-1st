@@ -30,6 +30,8 @@ if (!$result) {
         <button class="btn btn-disabled" disabled>❌ Sold Out</button>
     <?php else: ?>
         <a href="keranjang.php?add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
+        <a href="view.php?add=<?= $row['id'] ?>" class="btn">View Detail</a>
+
     <?php endif; ?>
 </div>
 
