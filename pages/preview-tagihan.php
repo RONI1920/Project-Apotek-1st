@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
             }
         }
     }
-    header("Location: lihat-keranjang.php");
+    header("Location: preview-keranjang.php");
     exit;
 }
 

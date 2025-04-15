@@ -11,7 +11,7 @@ if (!isset($_SESSION['keranjang'])) {
 if (isset($_GET['hapus'])) {
     $id = (int) $_GET['hapus'];
     unset($_SESSION['keranjang'][$id]);
-    header("Location: lihat-keranjang.php");
+    header("Location: preview-keranjang.php");
     exit;
 }
 ?>
