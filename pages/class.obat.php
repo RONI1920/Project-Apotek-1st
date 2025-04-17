@@ -1,5 +1,8 @@
 <?php
 
+require_once '../config/config.php';
+
+
 class obat {
     public $conn;
 
@@ -17,5 +20,9 @@ class obat {
         return $data;
     }
 }
+
+
+$obatKategori =  new obat($conn); // koneksi dikirim
+$data_obat = $obatKategori->getAll(); // ambil data dari database
 
 ?>

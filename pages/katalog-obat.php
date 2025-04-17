@@ -1,12 +1,7 @@
 <?php
 
 require_once('./template.header.php');
-include("../config/config.php");
 require_once "./class.obat.php";
-
-
-$obatKategori =  new obat($conn); // koneksi dikirim
-$data_obat = $obatKategori->getAll(); // ambil data dari database
 
 ?>
 
