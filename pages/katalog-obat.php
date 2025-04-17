@@ -2,14 +2,14 @@
 
 require_once('./template.header.php');
 include("../config/config.php");
+require_once "./class.obat.php";
 
-$result = $conn->query("SELECT * FROM produk WHERE kategori = 'obat' LIMIT 10");
 
-if (!$result) {
-    die("Gagal mengambil data produk: " . $conn->error);
-}
+$obatKategori =  new obat($conn); // koneksi dikirim
+$data_obat = $obatKategori->getAll(); // ambil data dari database
 
 ?>
+
 
 <h2 class="judul">Katalog Obat Lengkap & Terpercaya</h2>
 
@@ -20,24 +20,24 @@ if (!$result) {
 <?php endif; ?>
 
 <div class="katalog-container">
-    <?php while ($row = $result->fetch_assoc()): ?>
+    <?php foreach ($data_obat as $row): ?>
         <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
-    <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
-    <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
-    <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
-    <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
-    <?php if ($row['status'] == 'nonaktif' || $row['stok'] <= 0): ?>
-        <button class="btn btn-disabled" disabled>❌ Sold Out</button>
-    <?php else: ?>
-        <a href="keranjang.php?add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
-    <?php endif; ?>
-</div>
+            <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
+            <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
+            <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
+            <p class="stok">Stok: <?= htmlspecialchars($row['stok']) ?> pcs</p>
+            <?php if ($row['status'] == 'nonaktif' || $row['stok'] <= 0): ?>
+                <button class="btn btn-disabled" disabled>❌ Sold Out</button>
+            <?php else: ?>
+                <a href="keranjang.php?add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
+            <?php endif; ?>
+        </div>
 
-    <?php endwhile; ?>
+    <?php endforeach; ?>
 </div>
 
 <div class="footer">
-    <a href="index.php">← Kembali ke Beranda</a> | 
+    <a href="index.php">← Kembali ke Beranda</a> |
     <a href="preview-keranjang.php">🛒 Lihat Keranjang</a>
 </div>
 
@@ -51,4 +51,3 @@ if (!$result) {
         }
     }, 5000); // muncul selama 5 detik
 </script>
-
