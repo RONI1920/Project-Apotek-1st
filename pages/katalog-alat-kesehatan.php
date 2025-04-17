@@ -2,8 +2,8 @@
 require_once 'template.header.php';
 require_once 'class.kategori.php';
 
-$alatKategori =  new alat($conn); // koneksi dikirim
-$data_alat = $alatKategori->getAll(); // ambil data dari database
+$alat = new Katalog($conn, 'alat'); // koneksi dikirim
+$data_alat = $alat->getAll(); // ambil data dari database
 
 // Tangani penambahan ke keranjang
 if (isset($_GET['add']) && isset($_GET['kategori'])) {

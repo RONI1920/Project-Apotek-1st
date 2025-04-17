@@ -1,53 +1,18 @@
 <?php
 
-require_once 'template.header.php';
+require_once('./template.header.php');
 require_once 'class.kategori.php';
 
-$vitaminKategori =  new vitamin($conn); // koneksi dikirim
-$data_vitamin = $vitaminKategori->getAll(); // ambil data dari database
-
-
-// Tangani penambahan ke keranjang
-if (isset($_GET['add']) && isset($_GET['kategori'])) {
-    $id_produk = (int) $_GET['add'];
-    $kategori = $_GET['kategori']; // string
-
-
-    if ($produk && $produk['status'] == 'aktif' && $produk['stok'] > 0) {
-        if (!isset($_SESSION['keranjang'])) {
-            $_SESSION['keranjang'] = [];
-        }
-
-        if (isset($_SESSION['keranjang'][$id_produk])) {
-            $_SESSION['keranjang'][$id_produk]['jumlah'] += 1;
-        } else {
-            $_SESSION['keranjang'][$id_produk] = [
-                'nama' => $produk['nama_produk'],
-                'harga' => $produk['harga'],
-                'gambar' => $produk['gambar'],
-                'jumlah' => 1
-            ];
-        }
-
-        header("Location: katalog-vitamin-suplemen.php?status=success");
-        exit;
-    } else {
-        header("Location: katalog-vitamin-suplemen.php?status=failed");
-        exit;
-    }
-}
+$vitamin = new Katalog($conn, 'vitamin'); // koneksi dikirim
+$data_vitamin = $vitamin->getAll(); // ambil data dari database
 
 ?>
 
-<h2 class="judul">Katalog Vitamin dan Suplemen</h2>
+<h2 class="judul">Katalog Vitamin & Suplemen Lengkap</h2>
 
 <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
     <div class="notifikasi-sukses">
         ✅ Produk berhasil dimasukkan ke keranjang!
-    </div>
-<?php elseif (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
-    <div class="notifikasi-gagal">
-        ❌ Gagal menambahkan produk. Produk tidak tersedia.
     </div>
 <?php endif; ?>
 
@@ -61,7 +26,7 @@ if (isset($_GET['add']) && isset($_GET['kategori'])) {
             <?php if ($row['status'] == 'nonaktif' || $row['stok'] <= 0): ?>
                 <button class="btn btn-disabled" disabled>❌ Sold Out</button>
             <?php else: ?>
-                <a href="?add=<?= $row['id'] ?>&kategori=vitamin" class="btn">🛒 Masukkan Keranjang</a>
+                <a href="keranjang.php?add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>
@@ -69,18 +34,16 @@ if (isset($_GET['add']) && isset($_GET['kategori'])) {
 
 <div class="footer">
     <a href="index.php">← Kembali ke Beranda</a> |
-    <a href="lihat-keranjang.php">🛒 Lihat Keranjang</a>
+    <a href="preview-keranjang.php">🛒 Lihat Keranjang</a>
 </div>
 
 <script>
     setTimeout(() => {
-        const notif = document.querySelector('.notifikasi-sukses') || document.querySelector('.notifikasi-gagal');
+        const notif = document.querySelector('.notifikasi-sukses');
         if (notif) {
             notif.style.transition = 'opacity 1s';
             notif.style.opacity = '0';
             setTimeout(() => notif.remove(), 1000);
         }
-    }, 5000);
+    }, 5000); // muncul selama 5 detik
 </script>
-
-<?php require_once 'template.footer.php' ?>

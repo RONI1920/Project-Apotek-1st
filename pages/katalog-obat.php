@@ -4,8 +4,8 @@ require_once('./template.header.php');
 require_once 'class.kategori.php';
 
 
-$obatKategori =  new obat($conn); // koneksi dikirim
-$data_obat = $obatKategori->getAll(); // ambil data dari database
+$obat = new Katalog($conn, 'obat'); // koneksi dikirim
+$data_obat = $obat->getAll(); // ambil data dari database
 
 ?>
 

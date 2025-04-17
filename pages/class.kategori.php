@@ -4,74 +4,24 @@ require_once '../config/config.php';
 
 
 class katalog {
-    public $conn;
+    protected $conn;
+    protected $kategori;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($conn, $kategori = ''){
+        $this->conn = $conn;
+        $this->kategori = $kategori;
     }
-
     public function getAll() {
-        $query = "SELECT * FROM produk WHERE kategori = '' "; 
+        $query = "SELECT * FROM produk WHERE kategori = '" . mysqli_real_escape_string($this->conn, $this->kategori) . "'";
+    
         $result = mysqli_query($this->conn, $query);
         $data = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
-        } 
+        }
         return $data;
     }
-}
 
-
-class obat extends katalog{
-    public function __construct($db) {
-        parent :: __construct($db);
-    }
-
-    public function getAll() {
-        $query = "SELECT * FROM produk WHERE kategori = 'obat'"; 
-        $result = mysqli_query($this->conn, $query);
-        $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        } 
-        return $data;
-    }
-}
-
-
-
-
-class vitamin extends katalog{
-    public function __construct($db) {
-        parent :: __construct($db);
-    }
-
-    public function getAll() {
-        $query = "SELECT * FROM produk WHERE kategori = 'vitamin'"; 
-        $result = mysqli_query($this->conn, $query);
-        $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        } 
-        return $data;
-    }
-}
-
-
-class alat extends katalog{
-    public function __construct($db) {
-        parent :: __construct($db);
-    }
-
-    public function getAll() {
-        $query = "SELECT * FROM produk WHERE kategori = 'alat'"; 
-        $result = mysqli_query($this->conn, $query);
-        $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        } 
-        return $data;
-    }
 }
 
 
