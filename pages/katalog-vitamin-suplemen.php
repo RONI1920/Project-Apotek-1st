@@ -1,18 +1,17 @@
 <?php
+
 require_once 'template.header.php';
-include("../config/config.php");
+require_once 'class.kategori.php';
+
+$vitaminKategori =  new vitamin($conn); // koneksi dikirim
+$data_vitamin = $vitaminKategori->getAll(); // ambil data dari database
+
 
 // Tangani penambahan ke keranjang
 if (isset($_GET['add']) && isset($_GET['kategori'])) {
     $id_produk = (int) $_GET['add'];
     $kategori = $_GET['kategori']; // string
 
-    // Ambil data produk berdasarkan ID dan KATEGORI
-    $stmt = $conn->prepare("SELECT id, nama_produk, harga, gambar, stok, status FROM produk WHERE id = ? AND kategori = ?");
-    $stmt->bind_param("is", $id_produk, $kategori); // <- Perbaiki di sini
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $produk = $result->fetch_assoc();
 
     if ($produk && $produk['status'] == 'aktif' && $produk['stok'] > 0) {
         if (!isset($_SESSION['keranjang'])) {
@@ -38,11 +37,6 @@ if (isset($_GET['add']) && isset($_GET['kategori'])) {
     }
 }
 
-
-// Ambil data semua produk dengan kategori vitamin
-$query = $conn->prepare("SELECT * FROM produk WHERE kategori = 'vitamin' ORDER BY nama_produk ASC LIMIT 6");
-$query->execute();
-$result = $query->get_result();
 ?>
 
 <h2 class="judul">Katalog Vitamin dan Suplemen</h2>
@@ -58,7 +52,7 @@ $result = $query->get_result();
 <?php endif; ?>
 
 <div class="katalog-container">
-    <?php while ($row = $result->fetch_assoc()): ?>
+    <?php foreach ($data_vitamin as $row): ?>
         <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
@@ -70,7 +64,7 @@ $result = $query->get_result();
                 <a href="?add=<?= $row['id'] ?>&kategori=vitamin" class="btn">🛒 Masukkan Keranjang</a>
             <?php endif; ?>
         </div>
-    <?php endwhile; ?>
+    <?php endforeach; ?>
 </div>
 
 <div class="footer">

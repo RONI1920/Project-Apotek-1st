@@ -1,7 +1,11 @@
 <?php
 
 require_once('./template.header.php');
-require_once "./class.obat.php";
+require_once 'class.kategori.php';
+
+
+$obatKategori =  new obat($conn); // koneksi dikirim
+$data_obat = $obatKategori->getAll(); // ambil data dari database
 
 ?>
 
