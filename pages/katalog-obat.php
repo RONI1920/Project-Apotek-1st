@@ -3,9 +3,9 @@
 require_once('./template.header.php');
 require_once 'class.kategori.php';
 
-
-$obat = new Katalog($conn, 'obat'); // koneksi dikirim
-$data_obat = $obat->getAll(); // ambil data dari database
+// Membuat objek dari kelas katalog dan memanggil kategori 'obat'
+$obat = new Katalog();
+$model = $obat->getAll('obat');
 
 ?>
 
@@ -19,8 +19,8 @@ $data_obat = $obat->getAll(); // ambil data dari database
 <?php endif; ?>
 
 <div class="katalog-container">
-    <?php foreach ($data_obat as $row): ?>
-        <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
+<?php foreach ($obat->getAll('obat') as $row): ?>
+    <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
             <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
