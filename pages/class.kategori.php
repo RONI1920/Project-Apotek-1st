@@ -11,10 +11,15 @@ class katalog {
         $this->conn = $conn;
     }
 
-    public function getAll($kategori) {
+    public function getAll($kategori = 'NULL') {
+if ($kategori){
+    $kategori  = mysqli_real_escape_string($this->conn, $kategori);
+} else {
+    $query = "SELECT * FROM produk";
+}
+
         GLOBAL $conn;
         $result =mysqli_query($conn, "SELECT * FROM produk WHERE kategori = '$kategori'");
-    
         $data = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
