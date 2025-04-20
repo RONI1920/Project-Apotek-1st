@@ -12,14 +12,14 @@ class katalog {
     }
 
     public function getAll($kategori = 'NULL') {
+
 if ($kategori){
     $kategori  = mysqli_real_escape_string($this->conn, $kategori);
+    $query = "SELECT * FROM produk WHERE kategori = '$kategori' ";
 } else {
     $query = "SELECT * FROM produk";
 }
-
-        GLOBAL $conn;
-        $result =mysqli_query($conn, "SELECT * FROM produk WHERE kategori = '$kategori'");
+        $result =mysqli_query($this->conn, $query);
         $data = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
