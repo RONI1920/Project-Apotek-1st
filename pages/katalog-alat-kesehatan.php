@@ -4,7 +4,7 @@ require_once 'class.kategori.php';
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'alat'
 $alat = new Katalog(); // 
-$data_alat = $alat->getAll('alat'); // 
+$data_alat = $alat->get_all('alat'); // 
 
 // Tangani penambahan ke keranjang
 if (isset($_GET['add']) && isset($_GET['kategori'])) {
@@ -52,7 +52,7 @@ if (isset($_GET['add']) && isset($_GET['kategori'])) {
 <?php endif; ?>
 
 <div class="katalog-container">
-<?php foreach ($alat->getAll('alat') as $row): ?>
+<?php foreach ($alat->get_all('alat') as $row): ?>
     <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>

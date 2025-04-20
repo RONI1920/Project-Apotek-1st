@@ -5,7 +5,7 @@ require_once 'class.kategori.php';
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'vitamin'
 $vitamin = new katalog();
-$produkVitamin = $vitamin->getAll('vitamin'); // Memanggil kategori 'vitamin'
+$produkVitamin = $vitamin->get_all('vitamin'); // Memanggil kategori 'vitamin'
 
 ?>
 
@@ -18,7 +18,7 @@ $produkVitamin = $vitamin->getAll('vitamin'); // Memanggil kategori 'vitamin'
 <?php endif; ?>
 
 <div class="katalog-container">
-<?php foreach ($vitamin->getAll('vitamin') as $row): ?>
+<?php foreach ($vitamin->get_all('vitamin') as $row): ?>
     <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
