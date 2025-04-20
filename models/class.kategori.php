@@ -33,12 +33,6 @@ if ($kategori){
 ?>
 
 
-// apa yang gw lakuin?
-// gw membuat 1 file Repositori. dimana file ini melakukan suatu logic yang bisa mudah dibaca,
-// ringkas dan perawatan nya mudah. gw gak perlu repeat penulisan coding, menerapkan konsep OOP PHP.
-//memisahkan fungsi dimana fungsi melakukan tugas nya sendiri.
-//mulai mencoba memisahkan antara models, controller dan views
-
 
 
 
