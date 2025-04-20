@@ -5,7 +5,7 @@ require_once 'class.kategori.php';
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'obat'
 $obat = new Katalog();
-$model = $obat->getAll('obat');
+$model = $obat->get_all('obat');
 
 ?>
 
@@ -19,7 +19,7 @@ $model = $obat->getAll('obat');
 <?php endif; ?>
 
 <div class="katalog-container">
-<?php foreach ($obat->getAll('obat') as $row): ?>
+<?php foreach ($obat->get_all('obat') as $row): ?>
     <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>

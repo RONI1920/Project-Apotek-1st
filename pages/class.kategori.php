@@ -11,7 +11,7 @@ class katalog {
         $this->conn = $conn;
     }
 
-    public function getAll($kategori = 'NULL') {
+    public function get_all($kategori = 'NULL') {
 
 if ($kategori){
     $kategori  = mysqli_real_escape_string($this->conn, $kategori);
