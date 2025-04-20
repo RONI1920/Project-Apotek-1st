@@ -1,6 +1,6 @@
 <?php
 require_once 'template.header.php';
-require_once 'class.kategori.php';
+require_once ('../models/class.kategori.php');
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'alat'
 $alat = new Katalog(); // 

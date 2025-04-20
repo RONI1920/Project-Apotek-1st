@@ -83,7 +83,7 @@ include('../config/config.php');
     
     <div class="buttons">
         <a href="cetak_laporan.php" target="_blank" class="cetak">🖨️ Cetak PDF</a>
-        <a href="index.php" class="kembali">← Kembali</a>
+        <a href="admin-aksi.php" class="kembali">← Kembali</a>
     </div>
 
 </body>

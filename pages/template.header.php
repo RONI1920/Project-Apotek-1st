@@ -70,7 +70,7 @@ if ($hour >= 5 && $hour < 11) {
                     </div>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="./index.php">
                         <img src="../icon/9710991.png" class="menu-icon" alt="Kategori" />
                         <span>Kategori</span>
                     </a>
