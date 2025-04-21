@@ -1,6 +1,9 @@
 <?php
 session_start();
-include "../config/config.php"; // koneksi ke database
+require_once "../models/BaseClass.php";
+
+$db1 = new Database('localhost', 'root', '192022', 'apotek_roni');
+$conn = $db1->get_connect_to_data_base();
 
 // Jika form dikirim
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

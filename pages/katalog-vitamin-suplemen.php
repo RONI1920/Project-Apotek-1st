@@ -1,10 +1,10 @@
 <?php
 
 require_once('./template.header.php');
-require_once ('../models/class.kategori.php');
+require_once ('../models/BaseClass.php');
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'vitamin'
-$vitamin = new katalog();
+$vitamin = new ProdukRepository($conn);
 $produkVitamin = $vitamin->get_all('vitamin'); // Memanggil kategori 'vitamin'
 
 ?>

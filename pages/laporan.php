@@ -1,5 +1,6 @@
 <?php
-include('../config/config.php');
+require_once "../pages/template.header.php";
+
 ?>
 
 <!DOCTYPE html>

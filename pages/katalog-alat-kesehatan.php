@@ -1,9 +1,9 @@
 <?php
 require_once 'template.header.php';
-require_once ('../models/class.kategori.php');
+require_once ('../models/BaseClass.php');
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'alat'
-$alat = new Katalog(); // 
+$alat = new ProdukRepository($conn); // 
 $data_alat = $alat->get_all('alat'); // 
 
 // Tangani penambahan ke keranjang

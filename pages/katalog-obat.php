@@ -1,10 +1,10 @@
 <?php
 
 require_once('./template.header.php');
-require_once ('../models/class.kategori.php');
+require_once ('../models/BaseClass.php');
 
 // Membuat objek dari kelas katalog dan memanggil kategori 'obat'
-$obat = new Katalog();
+$obat = new ProdukRepository($conn);
 $model = $obat->get_all('obat');
 
 ?>

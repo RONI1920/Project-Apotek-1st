@@ -1,6 +1,5 @@
 <?php
-session_start();
-include('../config/config.php');
+require_once "../pages/template.header.php";
 
 // Inisialisasi keranjang jika belum ada
 if (!isset($_SESSION['keranjang'])) {
@@ -32,7 +31,7 @@ if (isset($_GET['hapus'])) {
         <strong>Keranjang kosong.</strong> Silakan kembali ke katalog untuk berbelanja.
     </div>
     <div class="footer">
-        <a href="katalog-obat.php">← Kembali ke Katalog</a>
+        <a href="index.php">← Kembali ke Katalog</a>
     </div>
 <?php else: ?>
     <!-- Form gabungan untuk update dan checkout -->

@@ -1,7 +1,15 @@
 <?php
-session_start();
+// Mulai output buffering untuk menghindari error output sebelum FPDF
+ob_start();
+
+// Pastikan tidak ada output sebelumnya
+require_once "../pages/template.header.php";
 require_once __DIR__ . '/../fpdf/fpdf.php';
-include('../config/config.php');
+
+// Memastikan koneksi database berhasil
+if (!$conn) {
+    die("Koneksi database gagal: " . mysqli_connect_error());
+}
 
 // PDF Setup
 $pdf = new FPDF('L', 'mm', 'A4');
@@ -80,8 +88,14 @@ if (!$hasData) {
     $pdf->Ln();
 }
 
+// Footer
 $pdf->SetY(-15);
 $pdf->SetFont('Arial', 'I', 8);
 $pdf->Cell(0, 10, 'Halaman: ' . $pdf->PageNo(), 0, 0, 'C');
 
+// Output PDF
 $pdf->Output();
+
+// Mengakhiri output buffering
+ob_end_clean();
+?>

@@ -1,10 +1,11 @@
 <?php
 require_once('./template.header.php');
-require_once('../models/class-admin-aksi.php');
+require_once "../models/BaseClass.php";
 
 
 //inisiasi objek
-$produklist = new Produk();
+$produklist = new ProdukRepository($conn);
+
 // Menangkap query pencarian
 $search = isset($_GET['search']) ? $_GET['search'] : ''; 
 // Jumlah produk per halama
