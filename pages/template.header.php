@@ -2,7 +2,7 @@
 session_start();
 require_once "../models/BaseClass.php"; 
 
-$db = new Database('localhost', 'root', '192022', 'apotek_roni');
+$db = new Database();
 $conn = $db->get_connect_to_data_base();
 
 require_once __DIR__ . '/../fpdf/fpdf.php';

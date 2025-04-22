@@ -3,23 +3,53 @@
 require_once('./template.header.php');
 require_once ('../models/BaseClass.php');
 
-// Membuat objek dari kelas katalog dan memanggil kategori 'obat'
-$obat = new ProdukRepository($conn);
-$model = $obat->get_all('obat');
+// Inisialisasi objek ProdukRepository dengan koneksi database
+$produkRepo = new ProdukRepository($conn);
 
+// Inisialisasi objek KeranjangService dengan ProdukRepository
+$keranjangService = new KeranjangService($produkRepo);
+
+// Inisialisasi controller
+$produkController = new ProdukController($produkRepo, $keranjangService);
+
+// Ambil kategori produk dari URL
+$kategori = $_GET['kategori'] ?? null;
+
+// Menangani permintaan produk
+$produk = $produkController->handleRequest();
+
+// Mengambil status dari session
+$status = $produkController->get_status();
+
+// Mengambil produk berdasarkan kategori atau semua produk
+$obat = $produkRepo->get_all('obat'); // Menambahkan ini untuk menginisialisasi $obat
+
+// Cek apakah status adalah 'success' atau 'updated'
+if ($status == 'success'): ?>
+    <div class="notifikasi-sukses">
+        ✅ Produk berhasil dimasukkan ke keranjang!
+    </div>
+<?php
+    // Hapus status dari sesi setelah ditampilkan
+    $produkController->clear_status(); // Menghapus status agar tidak muncul setelah refresh
+elseif ($status == 'updated'): ?>
+    <div class="notifikasi-update">
+        🔄 Produk yang sama sudah ada di keranjang. Jumlah diperbarui.
+    </div>
+<?php
+    // Hapus status dari sesi setelah ditampilkan
+    $produkController->clear_status(); // Menghapus status agar tidak muncul setelah refresh
+endif;
 ?>
+
+
+
 
 
 <h2 class="judul">Katalog Obat Lengkap & Terpercaya</h2>
 
-<?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-    <div class="notifikasi-sukses">
-        ✅ Produk berhasil dimasukkan ke keranjang!
-    </div>
-<?php endif; ?>
-
 <div class="katalog-container">
-<?php foreach ($obat->get_all('obat') as $row): ?>
+<?php foreach ($obat as $row): ?>
     <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>

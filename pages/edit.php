@@ -1,6 +1,5 @@
 <?php
-session_start();
-include('../config/config.php');
+require_once "../pages/template.header.php";
 
 // Cek apakah parameter id tersedia dan valid
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {

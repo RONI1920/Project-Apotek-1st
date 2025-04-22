@@ -4,7 +4,7 @@ require_once "../models/BaseClass.php";
 
 
 //inisiasi objek
-$produklist = new ProdukRepository($conn);
+$produklist = new ProdukRepository();
 
 // Menangkap query pencarian
 $search = isset($_GET['search']) ? $_GET['search'] : ''; 

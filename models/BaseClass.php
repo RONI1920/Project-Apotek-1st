@@ -6,7 +6,7 @@ if (!class_exists("Database")) {
     {
         protected $conn;
 
-        public function __construct($host, $user, $pass, $dbname)
+        public function __construct($host = 'localhost', $user = 'root', $pass = 192022, $dbname = 'apotek_roni')
         {
             $this->conn = new mysqli($host, $user, $pass, $dbname);
 
@@ -131,6 +131,8 @@ class KeranjangService
             ];
         } else {
             $_SESSION['keranjang'][$idProduk]['jumlah']++;
+            // Kirimkan status untuk notifikasi
+            $_SESSION['status'] = 'updated'; // Status untuk produk yang sudah ada di keranjang
         }
     }
 
@@ -167,14 +169,15 @@ class ProdukController
         if (isset($_GET['add'])) {
             $id = (int)$_GET['add'];
             $this->keranjangService->tambahProdukKeKeranjang($id);
-            header('Location: lihat-keranjang.php');
+            $this->set_status('success'); // Set status sukses
+            header('Location: ' . $_SERVER['HTTP_REFERER']); // Redirect untuk menghindari pengiriman berulang
             exit;
         }
 
         if (isset($_GET['remove'])) {
             $id = (int)$_GET['remove'];
             $this->keranjangService->hapusProdukDariKeranjang($id);
-            header('Location: lihat-keranjang.php');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit;
         }
 
@@ -185,6 +188,22 @@ class ProdukController
         // Mengembalikan produk ke tampilan
         return $produk;
     }
-}
 
-?>
+    // Menyimpan status ke session
+    public function set_status($status)
+    {
+        $_SESSION['status'] = $status;
+    }
+
+    // Mengambil status dari session
+    public function get_status()
+    {
+        return isset($_SESSION['status']) ? $_SESSION['status'] : null;
+    }
+
+    // Menghapus status dari session
+    public function clear_status()
+    {
+        unset($_SESSION['status']);
+    }
+}

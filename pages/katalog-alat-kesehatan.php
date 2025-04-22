@@ -1,59 +1,54 @@
 <?php
-require_once 'template.header.php';
+
+require_once('./template.header.php');
 require_once ('../models/BaseClass.php');
 
-// Membuat objek dari kelas katalog dan memanggil kategori 'alat'
-$alat = new ProdukRepository($conn); // 
-$data_alat = $alat->get_all('alat'); // 
+// Inisialisasi objek ProdukRepository dengan koneksi database
+$produkRepo = new ProdukRepository($conn);
 
-// Tangani penambahan ke keranjang
-if (isset($_GET['add']) && isset($_GET['kategori'])) {
-    $id_produk = (int) $_GET['add'];
-    $kategori = $_GET['kategori']; // string
+// Inisialisasi objek KeranjangService dengan ProdukRepository
+$keranjangService = new KeranjangService($produkRepo);
 
-    if ($produk && $produk['status'] == 'aktif' && $produk['stok'] > 0) {
-        if (!isset($_SESSION['keranjang'])) {
-            $_SESSION['keranjang'] = [];
-        }
+// Inisialisasi controller
+$produkController = new ProdukController($produkRepo, $keranjangService);
 
-        if (isset($_SESSION['keranjang'][$id_produk])) {
-            $_SESSION['keranjang'][$id_produk]['jumlah'] += 1;
-        } else {
-            $_SESSION['keranjang'][$id_produk] = [
-                'nama' => $produk['nama_produk'],
-                'harga' => $produk['harga'],
-                'gambar' => $produk['gambar'],
-                'jumlah' => 1
-            ];
-        }
+// Ambil kategori produk dari URL
+$kategori = $_GET['kategori'] ?? null;
 
-        header("Location: katalog-alat-kesehatan.php?status=success");
-        exit;
-    } else {
-        header("Location: katalog-alat-kesehatan.php?status=failed");
-        exit;
-    }
-}
+// Menangani permintaan produk
+$produk = $produkController->handleRequest();
 
+// Mengambil status dari session
+$status = $produkController->get_status();
 
+// Mengambil produk berdasarkan kategori atau semua produk
+$alat = $produkRepo->get_all('alat'); // Menambahkan ini untuk menginisialisasi $alat
 
-?>
-
-<h2 class="judul">Katalog Alat Kesehatan</h2>
-
-<?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+// Cek apakah status adalah 'success' atau 'updated'
+if ($status == 'success'): ?>
     <div class="notifikasi-sukses">
         ✅ Produk berhasil dimasukkan ke keranjang!
     </div>
-<?php elseif (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
-    <div class="notifikasi-gagal">
-        ❌ Gagal menambahkan produk. Produk tidak tersedia.
+<?php
+    // Hapus status dari sesi setelah ditampilkan
+    $produkController->clear_status(); // Menghapus status agar tidak muncul setelah refresh
+elseif ($status == 'updated'): ?>
+    <div class="notifikasi-update">
+        🔄 Produk yang sama sudah ada di keranjang. Jumlah diperbarui.
     </div>
-<?php endif; ?>
+<?php
+    // Hapus status dari sesi setelah ditampilkan
+    $produkController->clear_status(); // Menghapus status agar tidak muncul setelah refresh
+endif;
+?>
+
+
+<h2 class="judul">Katalog Alat Kesehatan</h2>
+
 
 <div class="katalog-container">
-<?php foreach ($alat->get_all('alat') as $row): ?>
-    <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
+    <?php foreach ($alat as $row): ?>
+        <div class="produk-card <?= $row['status'] == 'nonaktif' || $row['stok'] <= 0 ? 'sold-out' : '' ?>">
             <img src="../images/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['nama_produk']) ?>">
             <h4><?= htmlspecialchars($row['nama_produk']) ?></h4>
             <p class="harga">Rp <?= number_format($row['harga'], 0, ',', '.') ?></p>
@@ -61,7 +56,7 @@ if (isset($_GET['add']) && isset($_GET['kategori'])) {
             <?php if ($row['status'] == 'nonaktif' || $row['stok'] <= 0): ?>
                 <button class="btn btn-disabled" disabled>❌ Sold Out</button>
             <?php else: ?>
-                <a href="?add=<?= $row['id'] ?>&kategori=alat" class="btn">🛒 Masukkan Keranjang</a>
+                <a href="keranjang.php?add=<?= $row['id'] ?>" class="btn">🛒 Masukkan Keranjang</a>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>
@@ -74,13 +69,11 @@ if (isset($_GET['add']) && isset($_GET['kategori'])) {
 
 <script>
     setTimeout(() => {
-        const notif = document.querySelector('.notifikasi-sukses') || document.querySelector('.notifikasi-gagal');
+        const notif = document.querySelector('.notifikasi-sukses');
         if (notif) {
             notif.style.transition = 'opacity 1s';
             notif.style.opacity = '0';
             setTimeout(() => notif.remove(), 1000);
         }
-    }, 5000);
+    }, 5000); // muncul selama 5 detik
 </script>
-
-<?php require_once 'template.footer.php' ?>

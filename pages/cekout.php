@@ -1,20 +1,12 @@
 <?php
 session_start();
-if (empty($_SESSION['keranjang'])) {
-    header("Location: katalog-obat-keras.php");
-    exit;
-}
+require_once "../models/BaseClass.php";
 
-// Hitung total
-$total = 0;
-foreach ($_SESSION['keranjang'] as $item) {
-    $total += $item['harga'] * $item['jumlah'];
-}
 
-// Batas waktu pembayaran (misal 1 jam dari sekarang)
-$expiredTime = date("H:i", strtotime("+1 hour"));
-$tanggal = date("d-m-Y");
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
